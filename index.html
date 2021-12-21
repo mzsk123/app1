@@ -29,11 +29,11 @@
 
     async function battle(hand1,hand2) {
         var result;
-        if(hand1 - hand2 == -1 || hand1 - hand2 == 2 ){
+        if((hand1 - hand2) == -1 || (hand1 - hand2) == 2 ){
             result = 1;
         } else if(hand1 == hand2){
             result = 2;
-        }else if(hand1 - hand2 == 1 || hand1 - hand2 == -2 ){
+        }else if((hand1 - hand2) == 1 || (hand1 - hand2) == -2 ){
             result = 3;
         }
         return result;
