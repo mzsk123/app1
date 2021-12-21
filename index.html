@@ -9,7 +9,8 @@
 <body>
     <div>Teachable Machine Image Model</div>
     <div id="comhand">none</div>
-<div id="condition">none</div>   
+    <div id="condition">none</div>   
+    <div id="myhand">none</div> 
 <button type="button" onclick="init()">Start</button>
 <div id="webcam-container"></div>
 <div id="label-container"></div>
@@ -29,11 +30,11 @@
 
     async function battle(hand1,hand2) {
         var result;
-        if((hand1 - hand2) == -1 || (hand1 - hand2) == 2 ){
+        if(hand1 - hand2 == -1 || hand1 - hand2 == 2 ){
             result = 1;
         } else if(hand1 == hand2){
             result = 2;
-        }else if((hand1 - hand2) == 1 || (hand1 - hand2) == -2 ){
+        }else if(hand1 - hand2 == 1 || hand1 - hand2 == -2 ){
             result = 3;
         }
         return result;
@@ -105,6 +106,7 @@
         }else if (prediction[2].probability.toFixed(2) > 0.80){
             myhand = 3;
         }
+        document.getElementById("myhand").innerHTML = myhand;
         for (let i = 0; i < maxPredictions; i++) {
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
