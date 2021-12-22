@@ -31,11 +31,11 @@
 
     function battle(hand1,hand2) {
         var result;
-        if(hand1 - hand2 == -1 || hand1 - hand2 == 2 ){
+        if((hand1 == "rock" && hand2 == "scissor")||(hand1 == "scissor" && hand2 == "paper")||(hand1 == "paper" && hand2 == "rock")){
             result = 1;
         } else if(hand1 == hand2){
             result = 2;
-        }else if(hand1 - hand2 == 1 || hand1 - hand2 == -2 ){
+        }else if((hand1 == "scissor" && hand2 == "rock")||(hand1 == "paper" && hand2 == "scissor")||(hand1 == "rock" && hand2 == "paper")){
             result = 3;
         }
         return result;
@@ -57,7 +57,7 @@
         } else if (a==3){
             hand = "paper";
         } else {
-         hand = "error";
+            hand = "error";
         }
         return hand;
     }
