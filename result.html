@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIとじゃんけんして反射神経を鍛えよう！</title>
+    
+</head>
+<body>
+    <center>
+        <div style="font-size: 35px;font-weight: bold;">AIとじゃんけんして反射神経を鍛えよう！</div>
+    <p>あなたの合計タイムは <span id="total" style="font-size:40px;font-weight: bold;"></span> 秒です！</p>
+    <p>１手あたり <span id="time" style="font-size:40px;font-weight: bold;"></span> 秒かかりました！</p>
+
+    <button onclick="location.href='./index.html'" style="width:100px;height:50px;font-size:20px;border-radius: 7px;font-weight: bold;">リトライ</button>
+</center>
+    <script type="text/javascript">
+
+        var query = location.search;
+        var value = query.split('=');
+        document.getElementById("total").innerHTML = roundDecimal(value[1],2);
+        document.getElementById("time").innerHTML = roundDecimal(value[1]/10,2);
+
+        function roundDecimal(value, n) {
+            return Math.round(value * Math.pow(10, n) ) / Math.pow(10, n);
+        }
+
+    </script>
+</body>
+</html>
