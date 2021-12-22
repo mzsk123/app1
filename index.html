@@ -54,7 +54,7 @@
             document.getElementById("condition").innerHTML = condition;
             result = 0;
             while(result == condition){
-                result = battle(myhand,cphand);
+                result = await battle(myhand,cphand);
             }
         }
     }
