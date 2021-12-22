@@ -94,7 +94,7 @@
         await webcam.play();
         window.requestAnimationFrame(loop);
 
-        rule();
+        await rule();
 
         // append elements to the DOM
         document.getElementById("webcam-container").appendChild(webcam.canvas);
