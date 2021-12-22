@@ -69,7 +69,7 @@
             condition = getRandomInt(1,3);
             document.getElementById("condition").innerHTML = condition;
             result = 0;
-            while(result == condition){
+            while(result != condition){
                 result = battle(myhand,cphand);
             }
         }
