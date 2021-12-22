@@ -11,6 +11,7 @@
     <div id="comhand">none</div>
     <div id="condition">none</div>   
     <div id="myhand">none</div> 
+    <div id="result">none</div> 
 <button type="button" onclick="init()">Start</button>
 <div id="webcam-container"></div>
 <div id="label-container"></div>
@@ -28,7 +29,7 @@
 
     var turn, myhand, cphand, result, condition; //turn:ターン数(0-9) hand:手(1-3) result:結果(1-3) condition:条件(1-3)
 
-    async function battle(hand1,hand2) {
+    function battle(hand1,hand2) {
         var result;
         if(hand1 - hand2 == -1 || hand1 - hand2 == 2 ){
             result = 1;
@@ -45,16 +46,31 @@
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
     }
+    
+    function generateHand() {
+        var hand;
+        var a =  getRandomInt(1,3);
+        if(a==1){
+            hand = "rock";
+        } else if (a==2){
+            hand = "scissor";
+        } else if (a==3){
+            hand = "paper";
+        } else {
+         hand = "error";
+        }
+        return hand;
+    }
 
     async function rule(){
         for(let i=0; i<10; i++){
-            cphand = getRandomInt(1,3);
+            cphand = generateHand();
             document.getElementById("comhand").innerHTML = cphand;
             condition = getRandomInt(1,3);
             document.getElementById("condition").innerHTML = condition;
             result = 0;
             while(result == condition){
-                result = await battle(myhand,cphand);
+                result = battle(myhand,cphand);
             }
         }
     }
@@ -100,11 +116,11 @@
         const prediction = await model.predict(webcam.canvas);
 
         if(prediction[0].probability.toFixed(2) > 0.80){
-            myhand = 1;
+            myhand = "rock";
         } else if (prediction[1].probability.toFixed(2) > 0.80){
-            myhand = 2;
+            myhand = "scissor";
         }else if (prediction[2].probability.toFixed(2) > 0.80){
-            myhand = 3;
+            myhand = "paper";
         }
         document.getElementById("myhand").innerHTML = myhand;
         for (let i = 0; i < maxPredictions; i++) {
