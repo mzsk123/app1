@@ -63,6 +63,7 @@
     }
 
     async function rule(){
+        window.requestAnimationFrame(loop);
         for(let i=0; i<10; i++){
             cphand = generateHand();
             document.getElementById("comhand").innerHTML = cphand;
@@ -92,7 +93,7 @@
         webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
         await webcam.setup(); // request access to the webcam
         await webcam.play();
-        window.requestAnimationFrame(loop);
+        
 
         await rule();
 
